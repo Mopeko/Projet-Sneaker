@@ -21,10 +21,11 @@ tr, td {
 }
 h1 {
     font-family: Arial, sans-serif;
-    font-size: 28px;
+    font-size: 56px;
     color:aquamarine;
 }
 p {
+    padding: 25px;
     font-family: Arial, sans-serif;
     font-size: 20px;
     color:aquamarine;
