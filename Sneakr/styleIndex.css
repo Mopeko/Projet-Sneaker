@@ -3,6 +3,9 @@
     grid-template-columns: repeat(5, 1fr);
     gap: 15px;
 }
+body{
+    background-color: rgb(211, 211, 211);
+    }
 
 img {
     width: 100%;
@@ -16,17 +19,18 @@ table {
 }
 
 tr, td {
-    border: 2px dashed #1f5ad7;
+    border: 2px dashed black;
     border-radius: 5px;
 }
 h1 {
     font-family: Arial, sans-serif;
     font-size: 56px;
-    color:aquamarine;
+    color:darkslategrey;
 }
 p {
     padding: 25px;
     font-family: Arial, sans-serif;
     font-size: 20px;
-    color:aquamarine;
+    font-weight: 600;
+    color: darkslategrey;
 }

@@ -10,6 +10,11 @@ function displaySneakers(data) {
       let Name = document.createElement("p");
       let Price = document.createElement("p");
       let link = document.createElement("a");
+      const addToCartBtn = document.createElement("button");
+      addToCartBtn.textContent = "Ajouter à la wishlist";
+      addToCartBtn.addEventListener("click", function() {
+        wishlist(sneaker.id);
+      });
       link.setAttribute("href", "pageProduit.html?idS=" + sneaker.id);
       Price.innerHTML = sneaker.attributes.retailPrice + "€";
       Name.innerHTML = sneaker.attributes.name;
@@ -19,6 +24,7 @@ function displaySneakers(data) {
       sneakerDiv.appendChild(link);
       sneakerDiv.appendChild(Price);
       sneakerDiv.appendChild(Name);
+      sneakerDiv.appendChild(addToCartBtn);
       cellData.appendChild(sneakerDiv);
       lineData.appendChild(cellData);
       sneakerTable.appendChild(lineData);
@@ -27,25 +33,27 @@ function displaySneakers(data) {
   } else {
     console.log("Aucune donnée à afficher ou élément parent introuvable.");
   }
+  function wishlist(sneakerId){
+    let wishListItems = localStorage.getItem('wishlist');
+    if (!wishListItems) {
+      wishListItems = [];
+    }
+   else {
+      wishListItems = JSON.parse(wishListItems);
+    }
+    wishListItems.push(sneakerId);
+    localStorage.setItem('wishlist', JSON.stringify(wishListItems));
+  }
 }
-
-
-
-function fetchDataAndDisplay() {
-  fetch('all_data.json')
-    .then(response => response.json())
-    .then(data => {
-      displaySneakers(data);
-    })
-    .catch(error => console.error('Erreur lors de la récupération des données :', error));
-}
-function displaySneakersP() {
- 
-
-}
-
-
-fetchDataAndDisplay();
-window.onload = function () {
+  function fetchDataAndDisplay() {
+    fetch('all_data.json')
+      .then(response => response.json())
+      .then(data => {
+        displaySneakers(data);
+      })
+      .catch(error => console.error('Erreur lors de la récupération des données :', error));
+  }
   fetchDataAndDisplay();
-};
+  window.onload = function () {
+    fetchDataAndDisplay();
+  };
