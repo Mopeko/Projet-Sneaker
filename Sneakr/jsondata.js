@@ -1,3 +1,4 @@
+const List = 'wishlist'
 function displaySneakers(data) {
   const sneakerContainer = document.getElementById('Sneaker');
   if (sneakerContainer && Array.isArray(data) && data.length > 0) {
@@ -10,11 +11,11 @@ function displaySneakers(data) {
       let Name = document.createElement("p");
       let Price = document.createElement("p");
       let link = document.createElement("a");
-      const addToCartBtn = document.createElement("button");
+      let addToCartBtn = document.createElement("button");
       addToCartBtn.textContent = "Ajouter à la wishlist";
       addToCartBtn.addEventListener("click", function() {
-        wishlist(sneaker.id);
-      });
+        addWishList(List, sneaker.id)
+    });
       link.setAttribute("href", "pageProduit.html?idS=" + sneaker.id);
       Price.innerHTML = sneaker.attributes.retailPrice + "€";
       Name.innerHTML = sneaker.attributes.name;
@@ -30,30 +31,19 @@ function displaySneakers(data) {
       sneakerTable.appendChild(lineData);
       sneakerContainer.appendChild(sneakerTable);
     });
-  } else {
-    console.log("Aucune donnée à afficher ou élément parent introuvable.");
-  }
-  function wishlist(sneakerId){
-    let wishListItems = localStorage.getItem('wishlist');
-    if (!wishListItems) {
-      wishListItems = [];
-    }
-   else {
-      wishListItems = JSON.parse(wishListItems);
-    }
-    wishListItems.push(sneakerId);
-    localStorage.setItem('wishlist', JSON.stringify(wishListItems));
-  }
+  } 
 }
-  function fetchDataAndDisplay() {
-    fetch('all_data.json')
-      .then(response => response.json())
-      .then(data => {
-        displaySneakers(data);
-      })
-      .catch(error => console.error('Erreur lors de la récupération des données :', error));
-  }
+
+function fetchDataAndDisplay() {
+  fetch('all_data.json')
+    .then(response => response.json())
+    .then(data => {
+      displaySneakers(data);
+    })
+    .catch(error => console.error('Erreur lors de la récupération des données :', error));
+}
+
+fetchDataAndDisplay();
+window.onload = function () {
   fetchDataAndDisplay();
-  window.onload = function () {
-    fetchDataAndDisplay();
-  };
+};
