@@ -1,6 +1,8 @@
 body{
     background-color: whitesmoke;
     display: flex;
+    overflow-y: hidden;
+    overflow-x: hidden;
     }
 div{
     display: flex;
@@ -56,4 +58,5 @@ p {
     font-weight: 600;
     color: gray;
     text-align:  center;
+    margin-top: 15%;
 }
