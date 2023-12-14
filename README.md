@@ -21,4 +21,3 @@ Contributions to enhance the project are welcome! If you have suggestions or wan
 This project was created by **Maxime Brault**.
 
 Enjoy exploring the world of sneakers in this project! 🚀👟
-.
